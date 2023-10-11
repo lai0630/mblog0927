@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent#程式最上層路徑
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,10 +52,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mblog.urls'
 
-TEMPLATES = [
+TEMPLATES = [#樣板
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],#指定樣板式從templates這個資料夾
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
