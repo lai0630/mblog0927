@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}<!--會先繼承base裡面的網站 然後如果後面有提到block ...就是post的把base的蓋掉-->
 {% block title %}{{post.title}} - 文學天地{% endblock title %}
 {% block headmessage %} 
-    <h3 style='font-family:微軟正黑體;'>{{ post.title }}</h3>
+    <h3 style='font-family:微軟正黑體;'>{{ post.title }}</h3><!--這邊的post title指的是 點進去超連結 歡迎光臨下面的標題 EX:相思-->
     <a style='font-family:微軟正黑體;' href='/'>回首頁</a>
 {% endblock headmessage %}
 {% block content %}
