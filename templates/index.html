@@ -1,10 +1,22 @@
+{% extends 'base2.html' %}<!--只要是extend 他就會把別人的block蓋掉-->
+{% block title %}歡迎光臨我的部落格{% endblock title %}
+{% block headmessage %} <h3 style='font-family:標楷體;'>本站文章列表</a>
+{% endblock headmessage %}
+{% block content %}
+{% for post in posts %}<!--把變數放裡面 要有代表迴圈-->
+<p style="font-family:微軟正黑體;font-size:14pt;font-weight:bold;">
+        <a href="/post/{{post.slug}}">{{post.title}}</a><!--a href代表超連結 slug是代表你當時在資料庫設定的那個網址 title就是你資料的標題 且用超連結-->
+    </p>
+{% endfor %}<!--迴圈的結尾-->
+{% endblock content %}
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head><!--標題-->
+<!-- <html>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>歡迎光臨</title>
@@ -16,15 +28,16 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <h1>歡迎光臨部落格</h1>
+<!--        <h1>歡迎光臨部落格</h1>
         <hr><!--水平線-->
-        {% for post in posts %}<!--把變數放裡面 要有代表迴圈-->
-        <p style="font-family:微軟正黑體;font-size:14pt;font-weight:bold;">
-            <a href="/post/{{post.slug}}">{{post.title}}</a><!--a href代表超連結-->
-        </p>
+<!--        {% for post in posts %}<!--把變數放裡面 要有代表迴圈-->
+<!--         <p style="font-family:微軟正黑體;font-size:14pt;font-weight:bold;">
+            <a href="/post/{{post.slug}}">{{post.title}}</a><!--a href代表超連結 slug是代表你當時在資料庫設定的那個網址 title就是你資料的標題 且用超連結-->
+<!--         </p>
         {% endfor %}<!--迴圈的結尾-->
-        <hr>
+<!--        <hr>
         現在時間:{{now}}<!--圈起來的是變數-->
-        <script src="" async defer></script>
+<!--         <script src="" async defer></script>
     </body>
 </html>
+-->

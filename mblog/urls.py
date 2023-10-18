@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from mysite import views as mv#匯入函式 也可以打成 form mysite.views import homepage
 
-urlpatterns = [ #點哪個網址會跑去哪
+urlpatterns = [ #多打哪個網址會跑去哪
     path('admin/', admin.site.urls),#代表在網址後面打 admin會跑出啥
     path('',mv.homepage,name="homepage"),#網址啥都不打就先連到homepage這裡  如果上面import的方法改成備註的那樣 那這邊的逗號後面打homepage
-    path('post/<slug:slug>/', mv.showpost, name="showpost")#slug代表是變數(用<>)  如果輸入post/.../就跑去那個函式
+    path('post/<slug:slug>/', mv.showpost, name="showpost")#slug代表是變數(用<內容就是你在資料庫打的網址名稱>)  如果輸入post/.../就跑去那個函式
 ]
