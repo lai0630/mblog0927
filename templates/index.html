@@ -4,9 +4,24 @@
 {% endblock headmessage %}
 {% block content %}
 {% for post in posts %}<!--把變數放裡面 要有代表迴圈-->
-<p style="font-family:微軟正黑體;font-size:14pt;font-weight:bold;">
-        <a href="/post/{{post.slug}}">{{post.title}}</a><!--a href代表超連結 slug是代表你當時在資料庫設定的那個網址 title就是你資料的標題 且用超連結-->
-    </p>
+<div class='card'><!--讓他只show出40個字以內的 如果要看完整的就要點進去看-->
+    <div class='card-header'>
+        <p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
+            <a href='/post/{{post.slug}}'>{{ post.title }}</a>
+        </p>
+    </div>
+    <div class='card-body' style='background-color:#97CBFF'><!--他的背景要改成啥顏色-->
+        <p>
+           {{ post.body | truncatechars:40 }}<!--超過40個字元就不show出來-->
+        </p>
+    </div>
+    <div class='card-footer'  style='background-color:#5CADAD'>
+        <p>
+            發佈時間：{{ post.pub_date | date:"Y M d, h:m:s A"}}<!--post.pub_date顯示該時間 後面就是他的格式-->
+        </p>
+    </div>
+</div>
+<br><!--每顯示一次就換行 因為他在迴圈裏面 所以用完一個card就會換行-->
 {% endfor %}<!--迴圈的結尾-->
 {% endblock content %}
 

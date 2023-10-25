@@ -1,4 +1,5 @@
-{% extends 'base.html' %}<!--會先繼承base裡面的網站 然後如果後面有提到block ...就是post的把base的蓋掉-->
+{% extends 'base2.html' %}<!--會先繼承base裡面的網站 然後如果後面有提到block ...就是post的把base的蓋掉-->
+{%load markdown_extras %}
 {% block title %}{{post.title}} - 文學天地{% endblock title %}
 {% block headmessage %} 
     <h3 style='font-family:微軟正黑體;'>{{ post.title }}</h3><!--這邊的post title指的是 點進去超連結 歡迎光臨下面的標題 EX:相思-->
@@ -6,7 +7,7 @@
 {% endblock headmessage %}
 {% block content %}
 <p style='font-family:微軟正黑體;font-size:12pt;letter-spacing:2pt;'>
-    {{ post.body }}</a>
+    {{ post.body | convert_markdown | safe}}</a><!--讓放在資料庫裏面的圖片可以跑 就多打 | safe  且呼叫markdown的檔案-->
 </p>
 {% endblock content %}
 

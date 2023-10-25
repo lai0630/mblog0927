@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent#程式最上層路徑
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!39nsguf3bpot$g@h2zt%%u%sb+6#fk-at&&&kpm5s)qs8z4qy'
+SECRET_KEY = 'django-insecure-!39nsguf3bpot$g@h2zt%%u%sb+6#fk-at&&&kpm5s)qs8z4qy'#加解密的東西 這是整個網站
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -115,8 +115,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
+#上面這個網址是讓你去看django怎麼寫圖片
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = (#這裡的字不可以打錯
+    BASE_DIR / 'static',#可以在跟templates同層開一個資料夾叫做static 拿來放圖片
+)
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
