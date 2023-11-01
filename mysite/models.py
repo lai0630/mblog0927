@@ -23,5 +23,5 @@ class Product(models.Model):#在資料庫多一個 prduct這個東西 記得加�
     name = models.CharField(max_length=20)
     price = models.PositiveIntegerField()
     size = models.CharField(max_length=1, choices=SIZES)#choices=SIZES 可以選擇size
-    result = models.BooleanField()#新增一個欄位 但是在打makemigrate那兩行會錯 然後第一個輸入1 再來是0(word) 在打migrate的時候就可以了
+    result = models.BooleanField()#新增一個欄位 但是在打makemigrate那兩行會錯 然後第一個輸入1(因為是布林 所以是1或0) 再來是0(word裡面有) 在打migrate的時候就可以了
     
