@@ -14,11 +14,11 @@ def showpost(request,slug):#request浏览器向服务器发送的请求对象，
     try:
         post = Post.objects.get(slug=slug)#是從數據庫取得一個匹配的結果 返回一個對象 如果紀錄不存在的話 會回復錯誤
         if post!= None:
-            return render(request,'post.html',locals())#前兩個是必要的
+            return render(request,'post.html',locals())#前兩個是必要的 locals 把區域網路的東西打包
         else:
             return redirect("/")
     except:
-        return redirect("/")#redirect轉網址
+        return redirect("/")#redirect轉網址 如果產生錯誤就回到首頁
 ''' 
 這個放到網頁上只有純文字 他只是存到list 然後放到網頁上
 def homepage(request):#user透過網頁要做的事會被包成request傳進來
