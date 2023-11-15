@@ -3,11 +3,14 @@
 {% block headmessage %} <h3 style='font-family:標楷體;'>本站文章列表</a>
 {% endblock headmessage %}
 {% block content %}
+測試
+<a href='{% url 'post-url' 2015 10 3 02 %}'>show Post</a><!--url是關鍵字 超連結 定義超連結的網址(2015/10/3/02) 他會跑到urls去驗證name是否一樣 一樣才可以-->
+
 {% for post in posts %}<!--把變數放裡面 要有代表迴圈-->
 <div class='card'><!--讓他只show出40個字以內的 如果要看完整的就要點進去看-->
     <div class='card-header'>
         <p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
-            <a href='/post/{{post.slug}}'>{{ post.title }}</a>
+            <a href='{% url 'showpost' post.slug %}'>{{ post.title }}</a><!--活的超連結-->
         </p>
     </div>
     <div class='card-body' style='background-color:#97CBFF'><!--他的背景要改成啥顏色-->
