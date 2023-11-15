@@ -19,6 +19,19 @@ def showpost(request,slug):#request浏览器向服务器发送的请求对象，
             return redirect("/")
     except:
         return redirect("/")#redirect轉網址 如果產生錯誤就回到首頁
+import random    
+def about(request, num=-1):#request一定要寫 num 是自己先預設基本參數 可以負責接收參數
+    quotes = ['今日事，今日畢',
+                '要怎麼收穫，先那麼栽',
+                '知識就是力量',
+                '一個人的個性就是他的命運']
+    if num==-1 or num>4:
+        quote = random.choice(quotes)
+        return render(request, 'about.html', locals()) 
+    else:
+        quote=quotes[num]#取你輸入的數字所指定到的 陣列裡面的字
+        return  render(request, 'about.html', locals()) 
+
 ''' 
 這個放到網頁上只有純文字 他只是存到list 然後放到網頁上
 def homepage(request):#user透過網頁要做的事會被包成request傳進來
