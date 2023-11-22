@@ -1,0 +1,35 @@
+{% extends 'base2.html' %}<!--只要是extend 他就會把別人的block蓋掉-->
+{% block title %}歡迎光臨我的cars{% endblock title %}
+{% block headmessage %} <h3 style='font-family:標楷體;'>車子 - {{maker_name}}</a>
+{% endblock headmessage %}
+{% block content %}
+
+<h2>歡迎光臨DJ二手車賣場</h2>
+<table class='table table-bordered'>
+    <tr>
+    {% for m in car_maker %}<!--迴圈跑網址出來-->
+        <td><!--表格內裡面的內容-->
+            <a href="{% url 'carlist-url' forloop.counter0 %}">{{m}}</a><!--forloop.counter0從0開始算 所以會有carlist-url/0這個網址 carlist-url/1這個網址 跟urls views兩個程式都有關係-->
+        </td><!--上面那個是活的網址 如果直接打carlist/6的話 會錯 因為在網址那邊會有兩個carlist-->
+    {% endfor %}
+    </tr>
+</table>
+{% if cars %}
+<table>
+    <tr><td>車廠</td><td>車款</td>車價</tr>
+{% endif %}
+
+{% load humanize %}
+{% for c in cars %}
+    <tr bgcolor="{% cycle '#eeeeee' '#cccccc' %}">
+    <td>{{maker_name}}</td><td>{{ c.model}}</td>
+    <td align='right'>NT${{ c.price | floatformat:2 | intcomma }}<td>
+    </tr>
+{% empty %}<!--當陣列裡面是空的時，迴圈就不會跑 就會來跑下面的(要放在endfor前面)-->
+    <h3>車廠<em>{{maker_name}}</em>目前無庫存車</h3>
+{% endfor %}
+{% if cars %}
+    </table>
+{% endif %}
+
+{% endblock content %}

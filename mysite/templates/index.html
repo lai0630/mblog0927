@@ -1,6 +1,14 @@
 {% extends 'base2.html' %}<!--只要是extend 他就會把別人的block蓋掉-->
 {% block title %}歡迎光臨我的部落格{% endblock title %}
 {% block headmessage %} <h3 style='font-family:標楷體;'>本站文章列表</a>
+    hour : {{hour}}
+{% if hour > 13 %}
+下午好
+{% elif hour < 10 %}
+早安
+{% else %}
+你好
+{% endif %}<!--如果有if 那最後面一定要有endif-->
 {% endblock headmessage %}
 {% block content %}
 測試
