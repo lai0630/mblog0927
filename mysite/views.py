@@ -34,7 +34,7 @@ def about(request, num=-1):#request一定要寫 num是自己先預設基本參�
         return  render(request, 'about.html', locals()) 
     
 def carlist(request, maker=0):
-    car_maker = ['Ford', 'Honda', 'Mazda']#如果點SAAB 裡面就沒東西 點Ford就會跑出第二個陣列 搭配html去看
+    car_maker = ['Ford', 'Honda', 'Mazda']#如果點Ford就會跑出第一個陣列 點Honda會跑第二個陣列搭配html去看
     car_list =  [
         [{'model':'Fiesta', 'price': 203500},
             {'model':'Focus','price': 605000},
