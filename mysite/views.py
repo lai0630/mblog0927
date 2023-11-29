@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mysite.models import Post
+from mysite.models import Post,Comment
 from django.http import HttpResponse
 from datetime import datetime
 from django.shortcuts import redirect
@@ -11,6 +11,11 @@ def homepage(request):#把資料準備好 再送去網頁 用網頁樣板去用�
     hour = now.timetuple().tm_hour
     return render(request,'index.html',locals())#(讀哪個檔案,用local方式打包)
 
+def show_all_posts(request):
+    posts = Post.objects.all()#顯示全部
+    return render(request, 'allposts.html', locals())
+
+
 def showpost(request,slug):#request浏览器向服务器发送的请求对象，包含用户信息、请求内容和请求方式等
     try:
         post = Post.objects.get(slug=slug)#是從數據庫取得一個匹配的結果 返回一個對象 如果紀錄不存在的話 會回復錯誤
@@ -20,6 +25,12 @@ def showpost(request,slug):#request浏览器向服务器发送的请求对象，
             return redirect("/")
     except:
         return redirect("/")#redirect轉網址 如果產生錯誤就回到首頁
+
+def show_comments(request,post_id):#如果urls有參數 那這邊就要有參數
+    #comments = Comment.objects.filter(post=post_id)#抓多筆是這個
+    comments = Post.objects.get(id=post_id).comment_set.all()#get只能抓一筆資料 comment_set.all是動態產生的(明明沒寫 他會幫你產生)把資料自動往下抓(一對多)
+    return render(request, 'comments.html', locals())
+    
 import random    
 def about(request, num=-1):#request一定要寫 num是自己先預設基本參數 可以負責接收參數
     quotes = ['今日事，今日畢',

@@ -1,0 +1,28 @@
+{% extends 'base2.html' %}<!--只要是extend 他就會把別人的block蓋掉-->
+{% block title %}歡迎光臨我的部落格{% endblock title %}
+{% block headmessage %} 
+<h3 style='font-family:標楷體;'>本站文章列表 -table版本</a>
+{% endblock headmessage %}
+{% block content %}
+{% for post in posts %}<!--post從view來的-->
+{%if forloop.first%}<!--如果是第一次跑的話顯示下面的-->
+<table>
+    <tr background="#cccccc">
+        <th>Title</th>
+        <th>SLUG</th>
+        <th>pub date</th>
+        <th>檢視留言</th>
+
+    </tr>    
+{% endif %}<!--結束這個if 如果不是第一次跑 就跑下面的-->
+    <tr bgcolor='{% cycle "#ffccff" "ccffcc" %}'>
+        <td>{{post.title}}</td><!--把他一個一個顯示出來-->
+        <td>{{post.slug}}</td>
+        <td>{{post.pub_date}}</td>
+        <td><a href="{% url 'show-comments' post.id %}">view</a></td>
+    </tr>
+{%if forloop.last%}<!--如果是最後一次跑的話-->
+</table>
+{% endif %}
+{% endfor %}
+{% endblock content %}

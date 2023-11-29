@@ -1,0 +1,25 @@
+{% extends 'base2.html' %}<!--只要是extend 他就會把別人的block蓋掉-->
+{% block title %}歡迎光臨我的部落格{% endblock title %}
+{% block headmessage %} 
+<h3 style='font-family:標楷體;'>文章回復 -table版本</a>
+{% endblock headmessage %}
+{% block content %}
+{% for c in comments %}<!--comments從view來的-->
+{%if forloop.first%}<!--如果是第一次跑的話顯示下面的-->
+<table>
+    <tr background="#cccccc">
+        <th>Text</th>
+        <th>pub date</th>
+    </tr>    
+{% endif %}<!--結束這個if 如果不是第一次跑 就跑下面的-->
+    <tr bgcolor='{% cycle "#ffccff" "ccffcc" %}'>
+        <td>{{c.text}}</td><!--把他一個一個顯示出來-->
+        <td>{{c.pub_date}}</td>
+    </tr>
+{%if forloop.last%}<!--如果是最後一次跑的話-->
+</table>
+{% endif %}
+{%empty%}<!--空值的話-->
+<h2>沒有任何回復</h2>
+{% endfor %}
+{% endblock content %}

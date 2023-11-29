@@ -13,6 +13,16 @@ class Post(models.Model):#定義物件  繼承models.Model 在資料庫建立pos
         return self.title#印出標題在資料庫裡面
     
 
+
+class Comment(models.Model):#留言板 記得去admin讓它顯示
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)#他是主索引
+    text = models.CharField(max_length=200)#留言的欄位大小
+    pub_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) :
+        return self.text
+    
+    
 class Product(models.Model):#在資料庫多一個 prduct這個東西 記得加到admin
     SIZES = (
         ('S', 'Small'),#前面是真正儲存的內容 後面是顯示的
