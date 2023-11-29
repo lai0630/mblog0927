@@ -19,7 +19,7 @@
         <td>{{post.title}}</td><!--把他一個一個顯示出來-->
         <td>{{post.slug}}</td>
         <td>{{post.pub_date}}</td>
-        <td><a href="{% url 'show-comments' post.id %}">view</a></td>
+        <td><a href="{% url 'show-comments' post.id %}">view</a></td><!--這裡的show-comments會跑到urls的path 然後會回傳post/<int:post_id>/comments這段 post.id會變成超連結 然後數字會是流水號(看你輸入進去資料庫的順序)-->
     </tr>
 {%if forloop.last%}<!--如果是最後一次跑的話-->
 </table>

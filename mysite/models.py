@@ -15,7 +15,7 @@ class Post(models.Model):#定義物件  繼承models.Model 在資料庫建立pos
 
 
 class Comment(models.Model):#留言板 記得去admin讓它顯示
-    post = models.ForeignKey(Post,on_delete=models.CASCADE)#他是主索引
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)#他是主索引 然後他會到view的show_comments去抓資料
     text = models.CharField(max_length=200)#留言的欄位大小
     pub_date = models.DateTimeField(auto_now_add=True)
     

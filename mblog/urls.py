@@ -28,7 +28,7 @@ urlpatterns = [ #多打哪個網址會跑去哪
     path('post/<int:yr>/<int:mon>/<int:day>/<int:post_num>', views.Post, name='post-url'),#如果驗證對了(驗證他的name) 他就會讓超連結的網址變125....
     path('carlist/', views.carlist),
     path('carlist/<int:maker>/', views.carlist, name='carlist-url'),#變數名字叫maker 去呼叫carlist個函式
-    path('post/<int:post_id>/comments', views.show_comments, name = 'show-comments'),#一對多的表格 可以定義slug或是用數字用 後面再加上comments 顯示出所有的comments name是唯一的
+    path('post/<int:post_id>/comments', views.show_comments, name = 'show-comments'),#一對多的表格 可以定義slug或是用數字用 這裡的數字在html跑 後面再加上comments 顯示出所有的comments name是唯一的
 
     
     

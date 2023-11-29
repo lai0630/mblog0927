@@ -3,7 +3,7 @@ from mysite.models import Post,Product,Comment#匯入物件
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):#管理者的物件
-    list_display = ('title','slug','pub_date')#讓管理者可以看到這三個介面
+    list_display = ('id', 'title','slug','pub_date')#讓管理者可以看到這三個介面
     
     
 class CommentAdmin(admin.ModelAdmin):#管理者的物件
