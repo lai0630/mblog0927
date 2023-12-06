@@ -65,7 +65,32 @@ def carlist(request, maker=0):
     cars = car_list[maker]
     return render(request, 'carlist.html', locals())
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+def new_post(request):
+    print(f'form method:{request.method}')
+    if request.method=='GET':#method="post"看表單上(form那邊)的方法是get還是post
+        return render(request, 'myform_1.html', locals())
+    elif request.method=='POST':#都要全大寫
+        title = request.POST['title']#跟html裡面的你要抓的那個欄位的name一樣
+        slug = request.POST['slug']#如果改成post前面就要全大寫的POST
+        content = request.POST['content']
+        post = Post(title=title,slug=slug,body=content)#會讓他跑到models中的Post 然後Post的title = 我們在網頁打的title(裡面的字)....
+        post.save()#如果在上面打完後可以直接儲存到資料庫 他就會跟你在admin裡面打得一模一樣
+        return HttpResponseRedirect(reverse('show_all_posts'))#HttpResponseRedirect重新導向到urls的name叫做show all posts的地方
+        #return render(request, 'myform_1.html', locals())#locals()->把裡面的東西都變成local 然後讓網頁可以用
+
+
+    '''
+    try:
+        username = request.GET['user_id']#跟html裡面的你要抓的那個欄位的name一樣
+        password = request.GET['password']
+        print(f'username:{username}, password:{password}')#cmd那邊會出現
+        return render(request, 'myform_1.html', locals())
+    except:
+        return render(request, 'myform_1.html', locals())#如果在http那邊第一行是用get 那就是用render
 ''' 
+'''
 這個放到網頁上只有純文字 他只是存到list 然後放到網頁上
 def homepage(request):#user透過網頁要做的事會被包成request傳進來
     posts = Post.objects.all()#會把資料庫的東西都傳出來

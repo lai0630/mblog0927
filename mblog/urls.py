@@ -29,7 +29,8 @@ urlpatterns = [ #多打哪個網址會跑去哪
     path('carlist/', views.carlist),
     path('carlist/<int:maker>/', views.carlist, name='carlist-url'),#變數名字叫maker 去呼叫carlist個函式
     path('post/<int:post_id>/comments', views.show_comments, name = 'show-comments'),#一對多的表格 可以定義slug或是用數字用 這裡的數字在html跑 後面再加上comments 顯示出所有的comments name是唯一的
-
+    path('post/new',views.new_post,name="post-new"),#看到post/new呼叫views的那個函式 post-new是給django呼叫的
+    
     
     
 ]
