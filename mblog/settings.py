@@ -38,7 +38,8 @@ INSTALLED_APPS = [#新增app都要加進來
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'mysite'
+    'mysite',
+    'mytest'
 ]
 
 MIDDLEWARE = [

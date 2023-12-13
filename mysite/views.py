@@ -9,6 +9,7 @@ def homepage(request):#把資料準備好 再送去網頁 用網頁樣板去用�
     posts = Post.objects.all()
     now = datetime.now()#時間
     hour = now.timetuple().tm_hour
+    years = range(1960,2024)
     return render(request,'index.html',locals())#(讀哪個檔案,用local方式打包)
 
 def show_all_posts(request):
@@ -67,7 +68,7 @@ def carlist(request, maker=0):
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-def new_post(request):
+def new_post(request):#存到資料庫的東西
     print(f'form method:{request.method}')
     if request.method=='GET':#method="post"看表單上(form那邊)的方法是get還是post
         return render(request, 'myform_1.html', locals())
@@ -75,9 +76,10 @@ def new_post(request):
         title = request.POST['title']#跟html裡面的你要抓的那個欄位的name一樣
         slug = request.POST['slug']#如果改成post前面就要全大寫的POST
         content = request.POST['content']
-        post = Post(title=title,slug=slug,body=content)#會讓他跑到models中的Post 然後Post的title = 我們在網頁打的title(裡面的字)....
+        category = request.POST.getlist('category')#會把該html相對名字的東西全部抓去後端(是一個串列) 記得是用 ()
+        post = Post(title=title,slug=slug,body=content,category=category)#會讓他跑到models中的Post 然後Post的title = 我們在網頁打的title(裡面的字)....
         post.save()#如果在上面打完後可以直接儲存到資料庫 他就會跟你在admin裡面打得一模一樣
-        return HttpResponseRedirect(reverse('show_all_posts'))#HttpResponseRedirect重新導向到urls的name叫做show all posts的地方
+        return render(request,'myform_1.html',locals())#HttpResponseRedirect重新導向到urls的name叫做show all posts的地方
         #return render(request, 'myform_1.html', locals())#locals()->把裡面的東西都變成local 然後讓網頁可以用
 
 

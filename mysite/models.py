@@ -4,6 +4,7 @@ class Post(models.Model):#定義物件  繼承models.Model 在資料庫建立pos
     title = models.CharField(max_length=200)#字元
     slug = models.CharField(max_length=200)
     body = models.TextField()#長文字(不限制長度)
+    category = models.TextField(null=True)#分類 是一個文字欄位 null=True多加欄位要允許他是空的 不然不能用
     pub_date = models.DateTimeField(auto_now_add=True)#時間 auto_now_add=True->自動取得時間
     
     class Meta:

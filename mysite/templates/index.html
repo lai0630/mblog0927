@@ -1,14 +1,17 @@
 {% extends 'base2.html' %}<!--只要是extend 他就會把別人的block蓋掉-->
 {% block title %}歡迎光臨我的部落格{% endblock title %}
-{% block headmessage %} <h3 style='font-family:標楷體;'>本站文章列表</a>
-    hour : {{hour}}
-{% if hour > 13 %}
-下午好
-{% elif hour < 10 %}
-早安
-{% else %}
-你好
-{% endif %}<!--如果有if 那最後面一定要有endif-->
+{% block headmessage %} 
+<h3 style='font-family:標楷體;'>本站文章列表</a>
+<label for="byear">無意義年分</label>
+<select name="byear"><!--下拉式選單-->
+    {%for year in years%}<!--years在views那邊-->
+    <option value="{{year}}">西元{{year}}</option><!--option是選項-->
+    {%endfor%}
+</select>
+<input type='radio' name='ryear' checked>2000</input><!--有預設值就是 checked-->
+<input type='radio' name='ryear'>2001</input><!--name都要一樣 不然可能會有複選-->
+<input type='radio' name='ryear'>2002</input>
+<input type='radio' name='ryear'>2003</input>
 {% endblock headmessage %}
 {% block content %}
 測試
