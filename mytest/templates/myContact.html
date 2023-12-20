@@ -1,0 +1,30 @@
+<!--這是定義forms.py的 如果要讓使用者輸入可以在forms.py打-->
+{% extends 'base2.html' %}<!--會先繼承base裡面的網站 然後如果後面有提到block ...就是post的把base的蓋掉-->
+
+{% block title %}表單輸入-2{% endblock title %}<!--存到資料庫-->
+{% block headmessage %} 
+{% endblock headmessage %}
+{% block content %}<!--在裡面放表單-->
+<script>
+    function go_delete(id){
+        var user_pass = document.getElementById('user_pass').value;
+            var usr = '/' + id + '/';
+            window.location = usr;
+    }
+    </script>
+<h2>HTML Forms</h2>
+{% if message %}<!--這邊的message是在views裡面的-->
+    <div class='alert alert-warning'>
+         {{ message }}
+    </div>
+{% endif %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table><!--上下記得要有table-->
+    {{ form.as_table }}<!--table(表格)跟p的差別-->
+    </table>
+    <input type='submit' value='張貼'>
+    <input type='reset' value='清除重填'>
+    </form> 
+{% endblock content %}

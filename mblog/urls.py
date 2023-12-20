@@ -32,5 +32,7 @@ urlpatterns = [ #多打哪個網址會跑去哪
     path('post/new',mv.new_post,name="post-new"),#看到post/new呼叫views的那個函式 post-new是給django呼叫的
     path('test',mv.homepage,name='test-name'),
     path('test/new',testv.index,name='test-name'),
+    path('test/delpost/<int:pid>/',testv.delpost),
+    path('test/contact',testv.contact),
     
 ]
