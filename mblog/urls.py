@@ -34,5 +34,7 @@ urlpatterns = [ #多打哪個網址會跑去哪
     path('test/new',testv.index,name='test-name'),
     path('test/delpost/<int:pid>/',testv.delpost),
     path('test/contact',testv.contact),
-    
+    path('post2db/',testv.post2db),
+    path('register/',testv.register),
+    path('login/',testv.login),
 ]
