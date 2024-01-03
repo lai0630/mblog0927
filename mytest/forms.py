@@ -37,3 +37,12 @@ class  LoginForm(forms.Form):
     user_name = forms.CharField(label='您的帳號', max_length=50, initial='ericlai')#
     user_password = forms.CharField(label='輸入密碼', widget=forms.PasswordInput)#
     
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = models.Profile#跟哪個資料庫相關
+        fields = ['height', 'male', 'website']#定義要儲存欄位(要跟上面的一樣就是要跟Post有關聯)
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['height'].label = '身高'#有引用到model的mood
+        self.fields['male'].label = '性別'#預設值在model
+        self.fields['website'].label = '個人網址'

@@ -10,6 +10,10 @@ def homepage(request):#把資料準備好 再送去網頁 用網頁樣板去用�
     now = datetime.now()#時間
     hour = now.timetuple().tm_hour
     years = range(1960,2024)
+    if request.user.is_authenticated:#檢查使用者有沒有登入
+        user_name = request.user.username#顯示使用者在header
+    else:
+        user_name = '未登入'
     return render(request,'index.html',locals())#(讀哪個檔案,用local方式打包)
 
 def show_all_posts(request):

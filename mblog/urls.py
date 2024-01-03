@@ -36,5 +36,6 @@ urlpatterns = [ #多打哪個網址會跑去哪
     path('test/contact',testv.contact),
     path('post2db/',testv.post2db),
     path('register/',testv.register),
-    path('login/',testv.login),
+    path('login/',testv.login,name='login'),#名字是為了讓 html那邊可以用成活的連結
+    path('profile/',testv.profile)
 ]

@@ -2,6 +2,7 @@
 {% load static %}<!--讀取靜態檔案(圖片的部分)-->
 <div class='well'><!--背景會灰灰的-->
     <img src="{% static "images/pic.jfif" %}" width="400" height="200" ><!--記得要放到static->images這個檔案裏面 後面就改成你要放的圖片名字-->
+    {{user_name}}<!--如果使用者登入就會顯示-->
 </div>
 
 <h1 style="font-family:微軟正黑體;">歡迎光臨 文學天地</h1>

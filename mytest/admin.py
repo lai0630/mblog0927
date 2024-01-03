@@ -1,5 +1,6 @@
 from django.contrib import admin
-from mytest.models import Post, Mood#匯入物件
+from mytest.models import Post, Mood,Profile#匯入物件
+from django.contrib import admin
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):#管理者的物件
@@ -11,5 +12,6 @@ class CommentAdmin(admin.ModelAdmin):#管理者的物件
 
 admin.site.register(Post, PostAdmin)#把你要註冊到管理者網站的東西放()內
 admin.site.register(Mood)#如果要真正有欄位要打這行
+admin.site.register(Profile)
 
 

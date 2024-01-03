@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from mytest.models import Post, Mood
+from mytest.models import Post, Mood,Profile
 from django.shortcuts import redirect
-from mytest.forms import ContactForm,PostForm,UserRegisterForm,LoginForm
+from mytest.forms import ContactForm,PostForm,UserRegisterForm,LoginForm,ProfileForm
 
 def index(request): 
     posts = Post.objects.filter(enabled=True).order_by('-pub_time')[:30]#[:30]取前三十個  order_by('pub_date')用日期來排序
     moods = Mood.objects.all()#把東西從資料庫抓出來
+
     if request.method == 'GET':
         return render(request,'myform.html',locals())#一定要回應
     elif request.method =='POST':
@@ -115,3 +116,29 @@ def login (request):
     else:
         massge='ERROR'
         return render(request,'login.html',locals())#一定要回應
+
+@login_required(login_url='/login/')#如果使用者沒有登入就會導到登入頁 如果登入完會直接回到原本那頁
+def profile(request):#驗證使用者
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            username = request.user.username
+        try:
+            user = User.objects.get(username=username)
+            userinfo = Profile.objects.get(user=user)
+            form = ProfileForm(insitance=userinfo)
+        except:
+            form = ProfileForm()        
+        return render(request,'userinfo.html',locals())#一定要回應
+    elif request.method =='POST':
+        username = request.user.username
+        form = ProfileForm(request.POST)#去request抓資料 把變數抓下來
+        if form.is_valid():#一定要寫這個(if以下的) 這個是要抓裡面的值
+            user = User.objects.get(username=username)
+            userinfo = form.save(commit=False)
+            userinfo.user = user
+            userinfo.save()
+        form = ProfileForm()
+        return render(request,'userinfo.html',locals())#一定要回應
+    else:
+        massge='ERROR'
+        redirect('/')
